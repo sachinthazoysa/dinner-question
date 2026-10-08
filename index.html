@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +39,7 @@
         width: 100%;
         max-width: 420px;
 
-        background: rgba(255,255,255,0.92);
+        background: rgba(255,255,255,0.94);
 
         padding: 36px 28px;
 
@@ -64,7 +65,17 @@
 
     .subtitle {
         color: #806c6c;
-        margin-bottom: 25px;
+        margin-bottom: 22px;
+        line-height: 1.5;
+    }
+
+    .hint {
+        font-size: 14px;
+        color: #927b7b;
+        background: #faf3f3;
+        padding: 12px 14px;
+        border-radius: 12px;
+        margin-bottom: 18px;
         line-height: 1.5;
     }
 
@@ -113,7 +124,7 @@
     }
 
     .error {
-        height: 22px;
+        min-height: 22px;
 
         margin-top: 10px;
 
@@ -132,146 +143,4 @@
 
         line-height: 1.25;
 
-        margin: 20px 0;
-    }
-
-    .note {
-        color: #806c6c;
-
-        line-height: 1.6;
-
-        margin-bottom: 20px;
-    }
-
-    .maybe {
-        background: #eee4e4;
-        color: #2c2020;
-    }
-
-    @keyframes appear {
-        from {
-            opacity: 0;
-            transform: translateY(15px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-</style>
-</head>
-
-<body>
-
-<!-- PASSWORD SCREEN -->
-
-<div class="card" id="login">
-
-    <div class="emoji">🔐</div>
-
-    <h1>A tiny secret</h1>
-
-    <div class="subtitle">
-        Someone left you a question.
-    </div>
-
-    <input
-        id="password"
-        type="password"
-        placeholder="Enter the password"
-        autocomplete="off"
-    >
-
-    <button onclick="unlock()">
-        Unlock
-    </button>
-
-    <div class="error" id="error"></div>
-
-</div>
-
-
-<!-- SECRET MESSAGE -->
-
-<div class="card" id="question">
-
-    <div class="emoji">🍽️</div>
-
-    <div class="subtitle">
-        Okay... here goes.
-    </div>
-
-    <div class="question">
-        Would you be my forever dinner?
-    </div>
-
-    <div class="note">
-        No pressure. I just wanted to ask you
-        in a slightly more interesting way. 🙂
-    </div>
-
-    <button onclick="answerYes()">
-        Yes 👀
-    </button>
-
-    <button class="maybe" onclick="answerMaybe()">
-        Let me think 😌
-    </button>
-
-    <div class="error" id="answer"></div>
-
-</div>
-
-
-<script>
-
-const PASSWORD = "dinnerli";
-
-
-function unlock() {
-
-    const entered =
-        document
-        .getElementById("password")
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    if (entered === PASSWORD) {
-
-        document.getElementById("login").style.display = "none";
-
-        document.getElementById("question").style.display = "block";
-
-    }
-
-    else {
-
-        document.getElementById("error").textContent =
-            "Hmm... that's not it 👀";
-
-    }
-}
-
-
-function answerYes() {
-
-    document.getElementById("answer").textContent =
-        "Okay... you just made someone's day. ❤️";
-
-}
-
-
-function answerMaybe() {
-
-    document.getElementById("answer").textContent =
-        "Fair enough. Take your time. 🙂";
-
-}
-
-</script>
-
-</body>
-</html>
+        margin: 20px
