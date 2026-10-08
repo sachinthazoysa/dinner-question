@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A tiny question</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+
+        font-family:
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
+
+        background:
+            radial-gradient(circle at top,
+            #fff8f5 0%,
+            #ffe8e8 45%,
+            #f8dada 100%);
+
+        color: #2c2020;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 420px;
+
+        background: rgba(255,255,255,0.92);
+
+        padding: 36px 28px;
+
+        border-radius: 26px;
+
+        text-align: center;
+
+        box-shadow:
+            0 20px 60px rgba(70,30,30,0.15);
+
+        animation: appear 0.8s ease;
+    }
+
+    .emoji {
+        font-size: 48px;
+        margin-bottom: 12px;
+    }
+
+    h1 {
+        margin: 0 0 10px;
+        font-size: 28px;
+    }
+
+    .subtitle {
+        color: #806c6c;
+        margin-bottom: 25px;
+        line-height: 1.5;
+    }
+
+    input {
+        width: 100%;
+
+        padding: 15px;
+
+        border: 1px solid #e2d4d4;
+        border-radius: 13px;
+
+        font-size: 16px;
+
+        outline: none;
+
+        text-align: center;
+    }
+
+    input:focus {
+        border-color: #9d7777;
+    }
+
+    button {
+        width: 100%;
+
+        margin-top: 12px;
+
+        padding: 15px;
+
+        border: none;
+        border-radius: 13px;
+
+        background: #2c2020;
+        color: white;
+
+        font-size: 16px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: transform .15s ease;
+    }
+
+    button:active {
+        transform: scale(.97);
+    }
+
+    .error {
+        height: 22px;
+
+        margin-top: 10px;
+
+        color: #b33d3d;
+
+        font-size: 13px;
+    }
+
+    #question {
+        display: none;
+    }
+
+    .question {
+        font-size: 30px;
+        font-weight: 700;
+
+        line-height: 1.25;
+
+        margin: 20px 0;
+    }
+
+    .note {
+        color: #806c6c;
+
+        line-height: 1.6;
+
+        margin-bottom: 20px;
+    }
+
+    .maybe {
+        background: #eee4e4;
+        color: #2c2020;
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+
+<div class="card" id="login">
+
+    <div class="emoji">🔐</div>
+
+    <h1>A tiny secret</h1>
+
+    <div class="subtitle">
+        Someone left you a question.
+    </div>
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Enter the password"
+        autocomplete="off"
+    >
+
+    <button onclick="unlock()">
+        Unlock
+    </button>
+
+    <div class="error" id="error"></div>
+
+</div>
+
+
+<!-- SECRET MESSAGE -->
+
+<div class="card" id="question">
+
+    <div class="emoji">🍽️</div>
+
+    <div class="subtitle">
+        Okay... here goes.
+    </div>
+
+    <div class="question">
+        Would you be my forever dinner?
+    </div>
+
+    <div class="note">
+        No pressure. I just wanted to ask you
+        in a slightly more interesting way. 🙂
+    </div>
+
+    <button onclick="answerYes()">
+        Yes 👀
+    </button>
+
+    <button class="maybe" onclick="answerMaybe()">
+        Let me think 😌
+    </button>
+
+    <div class="error" id="answer"></div>
+
+</div>
+
+
+<script>
+
+const PASSWORD = "dinnerli";
+
+
+function unlock() {
+
+    const entered =
+        document
+        .getElementById("password")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if (entered === PASSWORD) {
+
+        document.getElementById("login").style.display = "none";
+
+        document.getElementById("question").style.display = "block";
+
+    }
+
+    else {
+
+        document.getElementById("error").textContent =
+            "Hmm... that's not it 👀";
+
+    }
+}
+
+
+function answerYes() {
+
+    document.getElementById("answer").textContent =
+        "Okay... you just made someone's day. ❤️";
+
+}
+
+
+function answerMaybe() {
+
+    document.getElementById("answer").textContent =
+        "Fair enough. Take your time. 🙂";
+
+}
+
+</script>
+
+</body>
+</html>
